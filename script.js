@@ -19,22 +19,15 @@ const updateSteps = (e) => {
   // Update progress bar width based on current step
   progressBar.style.width = `${((currentStep - 1) / (circles.length - 1)) * 100}%`;
 
-  // Check if current step is last step or first step and disable corresponding buttons
-  if (currentStep === circles.length) {
-    nextButton.disabled = true;
-  } else if (currentStep === 1) {
-    prevButton.disabled = true;
-  } else {
-    prevButton.disabled = false;
-    nextButton.disabled = false;
-  }
+  // Enable/disable previous and next buttons based on current step
+  prevButton.disabled = currentStep === 1;
+  nextButton.disabled = currentStep === circles.length;
 };
 
 // Check initial state of buttons and circles
 document.addEventListener("DOMContentLoaded", () => {
-  if (currentStep === 1) {
-    prevButton.disabled = true;
-  }
+  // Disable previous button if on the first step
+  prevButton.disabled = true;
 });
 
 // Add click event listeners to previous and next buttons
